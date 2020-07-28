@@ -20,13 +20,22 @@ const LaunchType = new GraphQLObjectType({
     details: { type: GraphQLString },
     launch_success: { type: GraphQLBoolean },
     rocket: { type: RocketType },
-    links: { type: LinkType }
+    links: { type: LinkType },
+    launch_site: { type: LaunchSiteType }
+  })
+});
+
+// Link Type
+const LaunchSiteType = new GraphQLObjectType({
+  name: "LaunchSite",
+  fields: () => ({
+    site_name_long: { type: GraphQLString }
   })
 });
 
 // Link Type
 const LinkType = new GraphQLObjectType({
-  name: "Link",
+  name: "Links",
   fields: () => ({
     article_link: { type: GraphQLString },
     wikipedia: { type: GraphQLString },

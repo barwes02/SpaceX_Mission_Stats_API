@@ -3,7 +3,6 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
-import ReactPlayer from "react-player/lazy";
 import YouTube from "react-youtube";
 
 const LAUNCH_QUERY = gql`
@@ -24,6 +23,9 @@ const LAUNCH_QUERY = gql`
         video_link
         youtube_id
       }
+      launch_site {
+        site_name_long
+      }
     }
   }
 `;
@@ -37,7 +39,6 @@ export class Launch extends Component {
         <Query query={LAUNCH_QUERY} variables={{ flight_number }}>
           {({ loading, error, data }) => {
             if (loading) return <h4>loading...</h4>;
-            if (error) console.log(error);
 
             const {
               mission_name,
@@ -45,8 +46,11 @@ export class Launch extends Component {
               launch_year,
               launch_success,
               details,
+              launch_date_local,
               rocket: { rocket_id, rocket_name, rocket_type },
-              links: { video_link, youtube_id }
+              links: { video_link, youtube_id },
+              launch_site: { site_name_long }
+
             } = data.launch;
 
             const opts = {
@@ -64,13 +68,19 @@ export class Launch extends Component {
 
                 <YouTube opts={opts} videoId={youtube_id} />
                 <br />
-                <h4 className="mb-3">Launch Details</h4>
+                <h4 className="mb-3">Launch Brief</h4>
                 <ul className="list-group">
                   <li className="list-group-item">
                     Flight Number: {flight_number}
                   </li>
                   <li className="list-group-item">
-                    Launch Year: {launch_year}
+                    Launch Date: <Moment format="YYYY-MM-DD">{launch_date_local}</Moment>
+                  </li>
+                  <li className="list-group-item">
+                    Launch Time: <Moment format="HH:mm">{launch_date_local}</Moment>
+                  </li>
+                  <li className="list-group-item">
+                    Launch Site: {site_name_longf}
                   </li>
                   <li className="list-group-item">
                     Launch Successful:{" "}
@@ -80,10 +90,10 @@ export class Launch extends Component {
                         "text-danger": !launch_success
                       })}
                     >
-                      {launch_success ? "yes" : "No"}
+                      {launch_success ? "Yes" : "No"}
                     </span>
                   </li>
-                  <li className="list-group-item">Details: {details}</li>
+                  <li className="list-group-item">Launch Details: {details}</li>
                 </ul>
 
                 <h4 className="my-3">Rocket Details</h4>

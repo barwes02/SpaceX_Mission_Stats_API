@@ -55,8 +55,7 @@ export class Launch extends Component {
 
             const opts = {
               height: "500px",
-              width: "100%",
-              origin: "https://spacex-missions-graphql.herokuapp.com/"
+              width: "100%"
             };
 
             return (

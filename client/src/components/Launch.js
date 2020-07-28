@@ -50,13 +50,12 @@ export class Launch extends Component {
               rocket: { rocket_id, rocket_name, rocket_type },
               links: { video_link, youtube_id },
               launch_site: { site_name_long }
-
             } = data.launch;
 
             const opts = {
               height: "500px",
               width: "100%",
-              origin: "https://spacex-missions-graphql.herokuapp.com/";
+              origin: "https://spacex-missions-graphql.herokuapp.com/"
             };
 
             return (
@@ -74,10 +73,12 @@ export class Launch extends Component {
                     Flight Number: {flight_number}
                   </li>
                   <li className="list-group-item">
-                    Launch Date: <Moment format="YYYY-MM-DD">{launch_date_local}</Moment>
+                    Launch Date:{" "}
+                    <Moment format="YYYY-MM-DD">{launch_date_local}</Moment>
                   </li>
                   <li className="list-group-item">
-                    Launch Time: <Moment format="HH:mm">{launch_date_local}</Moment>
+                    Launch Time:{" "}
+                    <Moment format="HH:mm">{launch_date_local}</Moment>
                   </li>
                   <li className="list-group-item">
                     Launch Site: {site_name_longf}

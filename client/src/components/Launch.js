@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
 import classNames from "classnames";
 import YouTube from "react-youtube";
 
@@ -81,7 +82,7 @@ export class Launch extends Component {
                     <Moment format="HH:mm">{launch_date_local}</Moment>
                   </li>
                   <li className="list-group-item">
-                    Launch Site: {site_name_longf}
+                    Launch Site: {site_name_long}
                   </li>
                   <li className="list-group-item">
                     Launch Successful:{" "}

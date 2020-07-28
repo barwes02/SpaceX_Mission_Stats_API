@@ -17,13 +17,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="container">
-          <Link to="/">
-            <img
-              src={logo}
-              alt="SpaceX"
-              style={{ width: 500, display: "block", margin: "auto" }}
-            />
-          </Link>
+
           <Route exact path="/" component={Launches} />
           <Route exact path="/launch/:flight_number" component={Launch} />
         </div>

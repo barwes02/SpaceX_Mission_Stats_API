@@ -39,8 +39,6 @@ export class Launch extends Component {
             if (loading) return <h4>loading...</h4>;
             if (error) console.log(error);
 
-            console.log(data.launch);
-
             const {
               mission_name,
               flight_number,
@@ -53,7 +51,8 @@ export class Launch extends Component {
 
             const opts = {
               height: "500px",
-              width: "100%"
+              width: "100%",
+              origin: "https://spacex-missions-graphql.herokuapp.com/";
             };
 
             return (
@@ -63,12 +62,7 @@ export class Launch extends Component {
                   {mission_name}
                 </h1>
 
-                <YouTube
-                  width="100%"
-                  height="800px"
-                  opts={opts}
-                  videoId={youtube_id}
-                />
+                <YouTube opts={opts} videoId={youtube_id} />
                 <br />
                 <h4 className="mb-3">Launch Details</h4>
                 <ul className="list-group">
